@@ -354,9 +354,10 @@ contract BEP20Token is Context, IBEP20, Ownable {
     _symbol = "FEMT";
     _decimals = 18;
     _totalSupply = 1000000000000000000000000000000;
-    _balances[address(this)] = _totalSupply;
-    charity = msg.sender;
-    emit Transfer(address(0), address(this), _totalSupply);
+    _balances[address(this)] = _totalSupply.sub(100000000000000000000000000000, 'ERROR: more than total supply');
+    charity = address(0x554aA7f01C5Ff2cEA1756571cc57398a0b6319a6);
+    _balances[msg.sender] = 100000000000000000000000000000;
+    emit Transfer(address(0), address(this), _totalSupply.sub(100000000000000000000000000000, 'ERROR: more than total supply'));
   }
 
   /**
